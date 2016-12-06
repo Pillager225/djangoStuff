@@ -10,7 +10,7 @@ def Home(request):
 	try:
 		conn = psycopg2.connect("dbname='blogdb' user='slave' host='localhost' password='aSuperDuperPassword'")
 		cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-		cursor.execute("SELECT * FROM blogEntries;")
+		cursor.execute("SELECT * FROM blogEntries ORDER BY date ASC;")
 		blogEntries = cursor.fetchall()
 	except Exception as msg:
 		print(msg)
@@ -31,6 +31,7 @@ def BlogEntry(request, num='0'):
 		print(msg)
 	template = loader.get_template(loc)
 	context = {
-		'title' : row['title']
+		'title' : row['title'],
+		'image' : row['image']
 	}
 	return HttpResponse(template.render(context, request))
