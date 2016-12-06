@@ -3,14 +3,13 @@
 {%- block title %}Blog Homepage{% endblock %}
 {%- block content %}
 	<div class="view">
-		<h1>This is all I got right now</h1>
 		{%- for bentry in blogEntries %}
 			<div class="row">
 				<div class="col-md-12 column ui-sortable">
-					<div class="box box-element">
-						<h2>bentry.title</h2>
-						<img src="bentry.image">
-						<p>bentry.description</p>
+					<div class="box box-element" onclick="window.location.href='/blog{{ bentry.location[9:16] }}'" style="cursor: pointer;">
+						<h2>{{ bentry.title }}</h2>
+						<img src="{{ bentry.image }}">
+						<p>{{ bentry.description }}</p>
 					</div>
 				</div>		
 			</div>
