@@ -2,16 +2,16 @@
 {%- block projectName %}Ryan's Blog{% endblock %}
 {%- block title %}Blog Homepage{% endblock %}
 {%- block content %}
-	<div class="view">
+	<div class="w3-container w3-center w3-margin-top">
 		{%- for bentry in blogEntries %}
-			<div class="row">
-				<div class="col-md-12 column ui-sortable">
-					<div class="box box-element" onclick="window.location.href='/blog{{ bentry.location[9:16] }}'" style="cursor: pointer;">
-						<h2>{{ bentry.title }}</h2>
-						<img src="{{ bentry.image }}">
-						<p>{{ bentry.description }}</p>
-					</div>
-				</div>		
+			<div class="w3-card-2" onclick="window.location.href='/blog{{ bentry.location[9:16] }}'" style="cursor: pointer; margin: auto;">
+				<h2>{{ bentry.title }}</h2>
+				{%- if bentry.image != "" %}
+					<img class="w3-round" src="{{ bentry.image }}" alt="">
+				{%- endif %}
+				<div class="w3-container w3-center">
+					<p>{{ bentry.description }}</p>
+				</div>
 			</div>
 		{%- endfor %}
 	</div>
