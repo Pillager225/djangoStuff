@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^blog/$', views.Home, name='home'),
     # notice the regex at the end prevents sql injections
     url(r'^blog/entry(?P<num>[0-9]+)/$', views.BlogEntry),
-    url(r'^', views.Home)
+    url(r'^$', views.Home)
 ]
