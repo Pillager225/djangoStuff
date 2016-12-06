@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
 '174.62.108.180',
 '192.168.1.48',
 'www.ryanloringcooper.info',
+'ryanloringcooper.info',
 ]
 
 
