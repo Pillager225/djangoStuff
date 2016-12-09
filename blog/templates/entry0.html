@@ -2,12 +2,9 @@
 {%- block blogEntry %} 
 <div class="w3-card blogcard blogtext w3-margin-top">
 	<p>Hello World! I made this blog to show off some of the projects I work on. It seems like most places are asking for a website when you apply to them nowadays, so I will use this one. Hopefully this website represents what I have done well. I am going to do my best to have it do that.</p>
-	<br>
 	<p>I figured that after learning how to be a full stack developer while I was employed at Stanford, I might as well put the knowledge to good use and make a webapp. While I was at Stanford, I programmed a webapp that ran on an Apache server using the Jinja2 template engine, mod_wsgi, and Google's webapp2. That webapp made use of a Postgresql database to store information about zones, vsyses, ip addresses, ports, and users pertaining to Stanford's network. One webapp I programmed routinely updates Stanford's border routers to prevent malicious traffic from being on the Stanford net. Another webapp I wrote allowed project managers to modify the firewall rules on Stanford's network that pertained to the project. Between those two projects I learned how to use HTML, CSS, Javascript, Python, Postgresql CLI commands, and exaBGP all in the same summer. I am incredibly grateful for the opprotunity I had at Stanford, and the amazing amount of information they taught me about computer networks and systems.</p>
-	<br>
-	<p>So the first project I am going to display is this webapp. The web page you are looking at now was served to you by an Ubuntu server running apache2 which makes use of mod_wsgi. Django is the web framework I used, which had built in support for Jinja2, and Postgresql (even though I use psycopg2 directly anyway). I originally styled the site with Bootstrap because of a class I had my senior year in college. I have since changed to use w3.css because it is lighter, looks a lot like Bootstrap, and, in my opinion, is simpler.</p>
-	<br>
-	<p>Using mod_wsgi in daemon mode would make some people say that this is a production grade webserver, and Django with Jinja2 is quite a lot more versatile than typical static pages that use Javascript to appear 'dynamic'. It wasn't too hard to set all this up. All it required was reading documentaion. To give you an idea of how much work it was, or if you would like to do it yourself, follow these steps below.</p>
+	<p>So the first project I am going to display is this webapp. The web page you are looking at now was served to you by an Ubuntu server running apache2 which makes use of mod_wsgi. Django is the web framework I used, which had built in support for Jinja2, and Postgresql (even though I use psycopg2 directly anyway). I use the database to store and retrieve blog entries. I originally styled the site with Bootstrap because of a class I had my senior year in college. I have since changed to use w3.css because it is lighter, looks a lot like Bootstrap, and, in my opinion, is simpler. The dark style of the site I wrote myself because it is easier on the eyes than a white screen with black text.</p>
+	<p>Using mod_wsgi in daemon mode would make some people say that this is a production grade webserver, and Django with Jinja2 is quite a lot more versatile than typical static pages that use Javascript to appear 'dynamic'. I suppose Ajax may be able to do what I am using Jinja2 for, but I like keeping the code that interfaces with the database serverside. It wasn't too hard to set all this up. All it required was reading documentaion. To give you an idea of how much work it was, or if you would like to do it yourself, follow these steps below.</p>
 	<ol>
 		<li>Get a computer that your willing to leave on 24/7 hooked up to the internet, and install Ubuntu on it. I did this with Ubuntu 16.04.1, but it will probably work on other versions of Ubuntu. Read how to install Ubuntu 
 			<a target="_blank" href="https://help.ubuntu.com/community/Installation">here.</a>
@@ -26,7 +23,33 @@
 			<br>
 			<br>
 		</li>
-		<li>
+		<li>Install pip with
+			<br>
+			<br>
+			<code class="w3-code w3-margin">sudo apt-get install python3-pip</code>	
+			<br>
+			<br>
+		</li>
+		<li>Install mod_wsgi with
+			<br>
+			<br>
+			<code class="w3-code w3-margin">sudo pip install mod_wsgi</code>
+			<br>
+			<br>
+		</li>
+		<li>Install Django with 
+			<br>
+			<br>
+			<code class="w3-code w3-margin">sudo pip install Django==1.10.4</code>
+			<br>
+			<br>
+		</li>
+		<li>Configure mod_wsgi with Django by following the guidelines found <a target="_blank" href="https://pypi.python.org/pypi/mod_wsgi">here.</a> Also don't forget to set it up to use Daemon mode because people on the internet say that mode is better for memory. Information on that can be found <a target="_blank" href="https://modwsgi.readthedocs.io/en/develop/user-guides/quick-configuration-guide.html">here.</a> In addition, Django provides some helpful information about what to have in the configuration files. That can be found <a target="_blank" href="https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/modwsgi/">here.</a> This is by far the hardest part because there are so many configuration files and so many different ways of configuring that work. They all have tradeoffs. Good luck.
+		</li>
+		<li>Once that is done, the site is basically ready for development. Information on starting a Django project can be found <a target="_blank" href="https://docs.djangoproject.com/en/1.10/intro/tutorial01/">here.</a> Django's site also provides tutorials on how to setup and use databases, such as Postgresql, and how to use templating engines, like Jinja2. I followed those tutorials to make this webapp.</li>
+		<li>Set Django to be able to serve static files so that CSS and Javascript are supported. Information on how to do this can be found <a target="_blank" href="https://docs.djangoproject.com/en/dev/howto/static-files/">here.</a></li>
 	</ol>
+	<p>After following all those tutorials, the development environment is built. That is all that is required though. Django requires that the name that is url for the page that it is serving is registered in settings.py, port forwarding needs to be setup so that http requests to the IP address the server is on are handled by the server, and a domain name must be registered.</p>
+	<p>Did I mention I don't really like web development? I'd rather work on robots and embedded systems. That's what most of the content on this site will likely be.<p>
 </div>
 {%- endblock %}
