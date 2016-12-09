@@ -8,8 +8,11 @@
 		<!-- allows you to load local css -->
 		<title>{% block title %}{% endblock %}</title>
 		{% block links %}
-			<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-			<link rel="stylesheet" href="css/firebugResetStyles.css">
+			<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css" type="text/css"/>
+			<link rel="stylesheet" href="/blog/css/firebugResetStyles.css" type="text/css"/>
+			<link rel="stylesheet" href="/blog/css/blogStyles.css" type="text/css"/>
+			<link rel="stylesheet" href="/blog/css/shStyles/shCore.css" type="text/css"/>
+			<link rel="stylesheet" href="/blog/css/shStyles/shThemeDefault.css" type="text/css"/>
 		{% endblock %}
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,16 +22,16 @@
 		<![endif]-->
 		
 	</head>
-	<body>
+	<body class="blog">
 		<ul class="w3-navbar w3-dark-grey w3-card-4">
-			<li><a  href="">{% block projectName %}{% endblock %}</a></li>
+			<li class="w3-navitem">{% block projectName %}{% endblock %}</li>
 			<li><a href="/blog">Home</a></li>
 			<li><a href="#about">About</a></li>
 			<li><a href="#contact">Contact</a></li>
 		</ul>
 		{% block content %}{% endblock %}
-
 		{% block scripts %}
+			<script type="text/javascript" src="/blog/js/shScripts/shCore.js"></script>
 		{% endblock %}
 	</body>
 </html>

@@ -4,7 +4,7 @@
 {%- block content %}
 	<div class="w3-container w3-center w3-margin-top">
 		{%- for bentry in blogEntries %}
-			<div class="w3-card-2" onclick="window.location.href='/blog{{ bentry.location[9:16] }}'" style="cursor: pointer; margin: auto;">
+			<div class="blogcard w3-card-2" onclick="window.location.href='/blog{{ bentry.location[9:16] }}'" style="cursor: pointer; margin: auto;">
 				<h2>{{ bentry.title }}</h2>
 				{%- if bentry.image != "" %}
 					<img class="w3-round" src="{{ bentry.image }}" alt="">
