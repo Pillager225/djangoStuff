@@ -4,10 +4,11 @@
 {%- block content %}
 	<div class="w3-container w3-center">
 		{%- if image != "" %}
-			<div class="blogcard w3-card-4">
-				<img src="{{ image }}">
+			<div class="blogcard w3-margin-top">
+				<h2>{{ title }}</h2>
+				<img src="{{ image }}" class="w3-image">
+				{%- block blogEntry %} {%- endblock %}
 			</div>
 		{%- endif %}
-		{%- block blogEntry %} {%- endblock %}
 	</div>
 {%- endblock %}

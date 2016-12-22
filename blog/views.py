@@ -10,7 +10,7 @@ def Home(request):
 	try:
 		conn = psycopg2.connect("dbname='blogdb' user='slave' host='localhost' password='aSuperDuperPassword'")
 		cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-		cursor.execute("SELECT * FROM blogEntries ORDER BY date ASC;")
+		cursor.execute("SELECT * FROM blogEntries ORDER BY date DESC;")
 		blogEntries = cursor.fetchall()
 	except Exception as msg:
 		print(msg)

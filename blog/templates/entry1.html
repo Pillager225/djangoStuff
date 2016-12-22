@@ -1,0 +1,39 @@
+{%- extends "templates/blogEntryBase.html" %}
+{%- block blogEntry %}
+<div class="blogtext">
+	<p>In this entry I will be describing how to make a box to control the power to a 120VAC circuit using a Raspberry Pi over wifi. This can be useful to automate things around the house, and contribute to the internet of things! Other microprocessor platforms may be used, but RPis are cheap and commonly used so I decided to use it for this entry. This is a fun, easy project for makers with spare time looking to automate things. This post is meant to be a mild tutorial that does not go into detail on how to do things, but to convey the idea of how to do it. It will take a little intuition to follow this post to create the project, as this post is only to demonstrate I have experience controlling AC circuits with microprocessors.</p>
+	<p>The parts that are required for this project are<br>
+		<ol>
+			<li>Arduino/Raspberry Pi/Microcontroller compatible relay like the one that can be found <a target="_blank" href="https://www.amazon.com/GEREE-Channel-optocoupler-Compatible-Arduino/dp/B01DZOKRKK">here.</a></li>
+			<li>Wall sockets like <a target="_blank" href="https://www.amazon.com/Leviton-T5320-W-Resistant-Receptacle-Residential/dp/B0015R9M2Y">these.</a> You may also want to use GFCI wall sockets as they can protect from shorts in the circuits it is connected to. GFCIs are a little less straight forward when wiring, so I will not talk about them here, but I have used them before. After reading this, and googling about ho to wire GFCIs, I am sure you can figure it out.</li>
+			<li>An enclosure of some kind. They can usually be found around the same area as wall sockets in hardware stores, and they kinda look like the ones found <a target="_blank" href="http://www.homedepot.com/b/Electrical-Electrical-Boxes-Conduit-Fittings-Boxes-Brackets/Wall-box/N-5yc1vZbohnZ1z115vz">here.</a> Although, I suppose a cardboard box would work too, so long as you won't have it in the rain, or will crush it with something.</li>
+			<li>A Raspberry Pi, or other microcontroller that can connect to wifi and has programmable GPIO.</li>
+			<li>A 5V 2A USB power supply like the kind that charge cell phones. This is if you are using a Raspberry Pi, but you'll need some power supply if you are using something else.</li>
+			<li>A micro-USB cable to power the RPi, or some other power cable to power your microprocessor/microcontroller.</li>
+			<li>An cable with a plug that can plug into your regional area's wall plugs that you are willing to chop up. This will be the cable that powers the circuit.
+			<li>Wire. I like 18AUG, but I'm sure anything above 12 would work pretty well. There are tradeoffs of using different types of wires, and a quick google search about solid core, or gauge size will give you good information on how to pick wire.</li>
+			<li>Solder. I like to use the 60/40 Sn to Pb ratio with rosin core. I am sure the silver kind would work too.</li>
+			<li>Electrical tape, and heatshrink to insulate connections.</li>
+		</ol>
+		You will also need some tools, such as<br>
+		<ol>
+			<li>Soldering iron</li>
+			<li>Wire cutter</li>
+			<li>Wire stripper</li>
+			<li>Various screwdrivers</li>
+		</ol>
+	</p>
+	<p>Once all the materials have been gathered, it is a pretty straight forward process. Cut the cable that plugs into the wall a good distance away from the plug and figure out which of the three wires inside correspond to which prongs on the plug. Remember them and figure out which prong is hot, neutral, and ground. If you don't know what those terms mean, do a quick search about AC plug wiring and those key terms. All of these steps are to be done with the while it is not plugged in.</p>
+	<p>Plan out how many wires will need to make connections, and where they will need to make them. Remember that the power supply for the microprocessor is also going to need some wires from the wall cord to be powered. I usually take the enclosure off of the 5V power supplies that I use for the RPi because it saves space.</p>
+	<p>You will want to connect the hot wire to the common terminal of the relay, and the normally open part of the relay to the hot connection on the wall socket. Do this by cutting wires and soldering them together to accomodate the multiple connection sites on the wall socket. Don't forget to heatshrink the connections to prevent accidental shorts.</p>
+	<p>The other wires from the wall cord will probably need some wires soldered to them to accomodate the multiple connections on the wall socket. Once they are soldered on, they can be connected to the wall socket. Make sure neutral is connected to neutral, and ground is connected to ground.</p>
+	<p>Hopefully you planned ahead and left a few connections to hot and neutral for the power supply. Don't forget to connect those too so that the microprocessor can be powered from the same power cord that gives power to the relays.</p>
+	<p>Once the microprocessor can be powered and the wall socket is wired to the relays and wall cord, then all that is left is to wire the microprocessor to the relays. They usually have straight forward wiring instructions printed on the PCB the relays are soldered too, but essentially one wire is for 5V, one is for ground, and the others are to trigger the relays. Some relays work differenly, so refer to their respective datasheets for more details.</p>
+	<p>Then make sure the microprocessor is connected to the wifi network you intend to use to communicate with it. This could also be done with bluetooth or possible IR sensors, but Wifi is the simplest in my opinion. Once it is connected, program the GPIO pins to be triggered by a script of some kind. This can be done with python listening on a certain port, ssh connections remotely executing bash scripts, or many many many other ways of doing it. Essentially, an IPv4 connection triggers the GPIO pins to go high or low depending on the data received. One of these projects I made in college had a python script listening for a TCP connection. That connection could be initiated by my laptop, or my cell phone. I made an Android app to do it, but that is for another post some other time.</p>
+	<p>You could also setup cron jobs to trigger appliances at certain times of the day, or week instead of having things triggered by wifi. Maybe you would rather have the microprocessor act as a small temperature control unit by having it use temperature feedback from a thermister or other temperature sensing device to trigger a fan of some kind. The possibilities are only limited by your imagination.</p>
+	<p>Here is an example of what the innards of the finished project looked. I made this in college to control the lights in my room</p>
+	<img src="/blog/img/WifiLights.jpg" alt="Wifi Lights" class="w3-image">
+	<p>At the top is a Raspberry Pi Zero, below it is the back of a GFCI wall socket, to the right is a 5V power supply for the Pi, and the relay can be seen below the GFCI socket. The white cable powers the Raspberry Pi, the black cable is connected to a Wifi dongle, and the colorful wires near the bottom control the relay. Electrical tape was added after this picture, but was not in the picture to make the components more obvious. You may also notice that the wall socket is not wired. That is because the wires cluttered the picture and I wanted to make the layout of the components visible in the picture.</p>
+	<p>And there you have it. IOT isn't so hard thanks to how easily it is to acquire the right parts to control AC circuits by microprocessors, and how easy it is to control GPIO pins. </p>
+</div>
+{% endblock %}
