@@ -22,6 +22,9 @@ from blog import views
 
 urlpatterns = [
     url(r'^blog/$', views.Home, name='home'),
+    url(r'^blog/contact/$', views.Contact),
+    url(r'^blog/about/$', views.About),
+    url(r'^blog/question/$', views.Question),
     # notice the regex at the end prevents sql injections
     url(r'^blog/entry(?P<num>[0-9]+)/$', views.BlogEntry),
     url(r'^$', views.Home)

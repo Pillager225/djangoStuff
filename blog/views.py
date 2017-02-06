@@ -32,6 +32,34 @@ def BlogEntry(request, num='0'):
 	template = loader.get_template(loc)
 	context = {
 		'title' : row['title'],
-		'image' : row['image']
+		'image' : row['image'],
+		'date' : row['date']
+	}
+	return HttpResponse(template.render(context, request))
+
+def About(request):
+	template = loader.get_template('templates/about.html')
+	context = {
+		'title' : "About Ryan",
+		'image' : "/blog/img/me.jpg",
+		'date' : ""
+	}
+	return HttpResponse(template.render(context, request))
+
+def Contact(request):
+	template = loader.get_template('templates/contact.html')
+	context = {
+		'title' : "Contact Ryan",
+		'image' : "",
+		'date' : ""
+	}
+	return HttpResponse(template.render(context, request))
+	
+def Question(request):
+	template = loader.get_template('templates/question.html')
+	context = {
+		'title' : "Questions for Ryan",
+		'image' : "",
+		'date' : ""
 	}
 	return HttpResponse(template.render(context, request))
